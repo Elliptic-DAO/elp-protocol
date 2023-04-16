@@ -1,0 +1,55 @@
+/* CSS Reset */
+
+/* Remove all margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove list styles */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Remove default link styles */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Remove default form styles */
+input,
+textarea,
+select,
+button {
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    background-color: transparent;
+    appearance: none;
+    outline: none;
+}
+
+/* Remove default table styles */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Reset box-sizing to border-box */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/* Set font-size and line-height for better default typography */
+body {
+    font-size: 14px;
+    line-height: 1.5;
+}

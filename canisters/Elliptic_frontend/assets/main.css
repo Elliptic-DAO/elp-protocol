@@ -1,0 +1,174 @@
+nav {
+  display: flex;
+  background-color: #EEF1EF;
+  height: 78px;
+  padding-right: 5vw;
+  padding-left: 5vw;
+
+}
+
+nav img {
+  width: fit-content;
+}
+
+nav h1 {
+  align-self: center;
+}
+
+nav div {
+  margin-left: auto;
+  display: flex;
+}
+
+nav button {
+  align-self: center;
+  height: 44px;
+}
+
+a:hover {
+  color: #fff;
+}
+
+button {
+  color: #000000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  font-size: 16px;
+  margin: 0 10px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+nav button:hover,
+button.active {
+  /* height: 80%; */
+  align-self: center;
+  background-color: #30332E;
+  color: #EEF1EF;
+  border-radius: 5px;
+}
+
+input {
+  background: white;
+  margin-left: 1rem !important;
+  padding-left: 3px;
+  height: 50px;
+  border: 2px solid !important;
+}
+
+.container {
+  display: flex;
+  place-content: center;
+  margin-top: 1em;
+}
+
+.convert {
+  min-width: 400px;
+}
+
+.convert button {
+  border: solid;
+  align-self: center;
+}
+
+.leverage {
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  min-width: 600px;
+}
+
+.leverage p {
+  flex-basis: 50%;
+}
+
+.leverage input {
+  flex-basis: 50%;
+}
+
+.leverage button {
+  border: solid;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  place-self: center;
+}
+
+.liquidity {
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  width: 400px;
+}
+
+.liquidity button {
+  border: solid;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white;
+  font-weight: 200;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  flex-shrink: 0;
+  /* make footer span the entire width of the page */
+}
+
+
+.status-table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.status-table td,
+th {
+  padding: 0.5em;
+  border: 1px solid black;
+}
+
+.status-table td:not(:last-child),
+th:not(:last-child) {
+  padding-right: 1em;
+}
+
+.status-table td:first-child,
+th:first-child {
+  padding-left: 1em;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 1em;
+}
+
+.loading {
+  top: 0;
+  height: 100vh;
+  z-index: 4;
+  position: absolute;
+  width: 100vw;
+  background: rgb(13 124 255 / 40%);
+}
+
+a:hover {
+  color: rgb(13 124 255);
+}

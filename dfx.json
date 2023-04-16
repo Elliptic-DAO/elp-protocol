@@ -1,0 +1,58 @@
+{
+  "canisters": {
+    "frontend": {
+      "frontend": {
+        "entrypoint": "canisters/Elliptic_frontend/src/index.html"
+      },
+      "source": [
+        "canisters/Elliptic_frontend/assets",
+        "dist/Elliptic_frontend/"
+      ],
+      "type": "assets"
+    },
+    "core": {
+      "candid": "canisters/core-canister/core.did",
+      "package": "core-canister",
+      "type": "rust"
+    },
+    "gauge": {
+      "candid": "canisters/gauge/gauge.did",
+      "package": "gauge",
+      "type": "rust"
+    },
+    "eusd_ledger": {
+      "candid": "canisters/icrc1/icrc1.did",
+      "type": "custom",
+      "wasm": "canisters/icrc1/ic-icrc1-ledger.wasm"
+    },
+    "icp_ledger": {
+      "candid": "canisters/icrc1/icrc1.did",
+      "type": "custom",
+      "wasm": "canisters/icrc1/ic-icrc1-ledger.wasm"
+    },
+    "xrc": {
+      "candid": "canisters/xrc/xrc.did",
+      "type": "custom",
+      "wasm": "canisters/xrc/xrc.wasm"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8080",
+      "canister_http": {
+        "enabled": true
+      },
+      "replica": {
+        "subnet_type": "system"
+      },
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}

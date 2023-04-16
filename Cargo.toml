@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "canisters/core-canister",
+    "canisters/gauge",
+]

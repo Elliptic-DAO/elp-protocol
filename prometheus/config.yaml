@@ -1,0 +1,19 @@
+metrics:
+  global:
+    scrape_interval: 60s
+  configs:
+  - name: hosted-prometheus
+    scrape_configs:
+      - job_name: '<JOB_NAME>' # Name of the job
+        scrape_interval: 15s # Override the default scrape interval
+        metrics_path: /metrics # Path of the metrics endpoint
+        static_configs:
+          - targets: ['<CANISTER_ID>.raw.ic0.app'] # Target URL of the API
+    remote_write:
+      - url: <URL>
+        basic_auth:
+          username: <USERNAME>
+          password: <PASSWORD>
+
+
+

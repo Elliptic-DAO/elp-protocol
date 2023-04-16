@@ -1,0 +1,26 @@
+{
+  "core": {
+    "ic": "ryuwj-caaaa-aaaam-abipa-cai",
+    "local": "rkp4c-7iaaa-aaaaa-aaaca-cai"
+  },
+  "eusd_ledger": {
+    "ic": "tmkt5-haaaa-aaaam-abiba-cai",
+    "local": "renrk-eyaaa-aaaaa-aaada-cai"
+  },
+  "frontend": {
+    "ic": "t6mee-lqaaa-aaaam-abica-cai",
+    "local": "rrkah-fqaaa-aaaaa-aaaaq-cai"
+  },
+  "gauge": {
+    "ic": "rdrkm-yyaaa-aaaam-abinq-cai",
+    "local": "renrk-eyaaa-aaaaa-aaada-cai"
+  },
+  "icp_ledger": {
+    "ic": "tllvj-kyaaa-aaaam-abibq-cai",
+    "local": "ryjl3-tyaaa-aaaaa-aaaba-cai"
+  },
+  "xrc": {
+    "ic": "uf6dk-hyaaa-aaaaq-qaaaq-cai",
+    "local": "rno2w-sqaaa-aaaaa-aaacq-cai"
+  }
+}

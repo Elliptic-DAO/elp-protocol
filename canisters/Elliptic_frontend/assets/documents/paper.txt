@@ -1,0 +1,8 @@
+The Elliptic protocol is an innovative decentralized and over-collateralized stablecoin 
+platform that aims to provide a stable and capital-efficient alternative to highly volatile cryptocurrencies. 
+The protocol allows users to exchange their volatile assets from multiple chains into stable assets, 
+providing a stable value in US dollars represented as eUSD. As one of the founding pillars of Decentralized Finance (DeFi), 
+stablecoins play a crucial role in the ecosystem and the Elliptic protocol aims to be at the forefront of innovation by 
+leveraging the cutting-edge technology of the Internet Computer. With its innovative approach, 
+the Elliptic protocol is poised to become the first decentralized multi-chain stablecoin in the 
+blockchain space.

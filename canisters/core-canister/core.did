@@ -1,0 +1,157 @@
+type Account = record { owner : principal; subaccount : opt vec nat8 };
+type Asset = variant { ICP; EUSD };
+type Event = variant {
+  init : InitArgs;
+  swap : Swap;
+  liquidity : Liquidity;
+  upgrade : record {};
+  swap_success : SwapSuccess;
+  claim_liquidity_rewards : record { owner : principal };
+  open_leverage_position : LeveragePosition;
+  close_leverage_position : record {
+    fee : nat64;
+    output_block_index : opt nat64;
+    deposit_block_index : nat64;
+  };
+};
+type GetEventsArg = record { start : nat64; length : nat64 };
+type HttpRequest = record {
+  url : text;
+  method : text;
+  body : vec nat8;
+  headers : vec record { text; text };
+};
+type HttpResponse = record {
+  body : vec nat8;
+  headers : vec record { text; text };
+  status_code : nat16;
+};
+type IcpPrice = record { rate : nat64 };
+type Mode = variant {
+    ReadOnly;
+    RestrictedTo: vec principal;
+    DepositsRestrictedTo: vec principal;
+    GeneralAvailability;
+    NoHttpOutCalls;
+};
+type InitArgs = record {
+  mode: Mode;
+  eusd_ledger_principal : opt principal;
+  xrc_principal : opt principal;
+  icp_ledger_principal : opt principal;
+  min_amount_to_stable : opt nat64;
+  min_amount_from_stable : opt nat64;
+  min_amount_leverage : opt nat64;
+  min_amount_liquidity : opt nat64;
+};
+type LeveragePosition = record {
+  fee : nat64;
+  take_profit : nat64;
+  covered_amount : nat64;
+  owner : principal;
+  icp_entry_price : IcpPrice;
+  timestamp : nat64;
+  deposit_block_index : nat64;
+  amount : nat64;
+};
+type LeveragePositionError = variant {
+  PositionNotFound;
+  TemporarilyUnavailable : text;
+  AlreadyProcessing;
+  LedgerError : TransferError;
+  TooEarlyToClose;
+  NotEnoughFundsToCover;
+  IndexNotFound;
+  CallerNotOwner;
+  AmountTooSmall;
+};
+type Liquidity = record {
+  fee : nat64;
+  block_index : nat64;
+  operation_type : LiquidityType;
+  timestamp : nat64;
+  caller : principal;
+  amount : nat64;
+};
+type LiquidityError = variant {
+  NoClaimableReward;
+  TemporarilyUnavailable : text;
+  AlreadyProcessing;
+  LedgerError : TransferError;
+  NotEnoughLiquidity: nat64;
+  NoLiquidityProvided;
+  AmountTooSmall;
+};
+type LiquidityType = variant { Add; Remove };
+type OpenLeveragePositionArg = record {
+  take_profit : nat64;
+  covered_amount : nat64;
+  amount : nat64;
+};
+type ProtocolStatus = record {
+  tvl : nat64;
+  collateral_ratio : nat64;
+  coverable_amount : nat64;
+  icp_price : nat64;
+  coverered_ratio : nat64;
+};
+type Result = variant { Ok : nat64; Err : LiquidityError };
+type Result_1 = variant { Ok : nat64; Err : LeveragePositionError };
+type Result_2 = variant { Ok : nat64; Err : SwapError };
+type Swap = record {
+  to : Asset;
+  fee : nat64;
+  from_amount : nat64;
+  from : Asset;
+  rate : nat64;
+  from_block_index : nat64;
+  timestamp : nat64;
+  caller : principal;
+};
+type SwapArg = record { to_asset : Asset; from_asset : Asset; amount : nat64 };
+type SwapError = variant {
+  NoPriceData;
+  TemporarilyUnavailable : text;
+  AlreadyProcessing;
+  EUSDLedgerError : TransferError;
+  ICPLedgerError : TransferError;
+  AmountTooSmall;
+};
+type SwapSuccess = record { to_block_index : nat64; from_block_index : nat64 };
+type TransferError = variant {
+  GenericError : record { message : text; error_code : nat };
+  TemporarilyUnavailable;
+  BadBurn : record { min_burn_amount : nat };
+  Duplicate : record { duplicate_of : nat };
+  BadFee : record { expected_fee : nat };
+  CreatedInFuture : record { ledger_time : nat64 };
+  TooOld;
+  InsufficientFunds : record { balance : nat };
+};
+type UserData = record {
+  liquidity_provided : nat64;
+  leverage_positions : opt vec LeveragePosition;
+  claimable_liquidity_rewards : nat64;
+};
+type UpgradeArgs = record {};
+type CoreArgs = variant {
+  Init: InitArgs;
+  Upgrade: opt UpgradeArgs;
+};
+service : (core_args : CoreArgs) -> {
+  get_deposit_account : () -> (Account);
+
+  add_liquidity : (nat64) -> (Result);
+  remove_liquidity : (nat64) -> (Result);
+  claim_liquidity_rewards : () -> (Result);
+
+  open_leverage_position : (OpenLeveragePositionArg) -> (Result_1);
+  close_leverage_position : (nat64) -> (Result_1);
+
+  swap : (SwapArg) -> (Result_2);
+
+  get_events : (GetEventsArg) -> (vec Event) query;
+  get_protocol_status : () -> (ProtocolStatus) query;
+  get_user_data : (principal) -> (UserData) query;
+  http_request : (HttpRequest) -> (HttpResponse) query;
+}
